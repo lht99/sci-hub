@@ -41,6 +41,9 @@ def sci(update, context):
     f.close()
     update.message.reply_text("Your output file: \n")
     context.bot.send_document(chat_id, open(link2, 'rb'),  reply_to_message_id = ids)                        
+def error(update, context):
+    """Log Errors caused by Updates."""
+    logger.warning('Update "%s" caused error "%s"', update, context.error)
     
 def main():
     """Start the bot."""
