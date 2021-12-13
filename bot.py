@@ -28,7 +28,7 @@ def sci(update, context):
     ids = update.message.message_id
     chat_id =  update.message.chat_id
     url = update.message.text
-    sci_url = 'https://sci-hub.se/' + url
+    sci_url = 'https://sci-hub.se/' + url + ".pdf"
     update.message.reply_text("Retrieving: " + sci_url)
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
