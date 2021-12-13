@@ -34,6 +34,10 @@ def sci(update, context):
     soup = bs(html_text, 'html.parser')
     link = soup.findAll('button')[0]["onclick"]
     link1 = link.split("'")[1]
+    if link1[:2] == "//":
+        link2 = link1.replace("//", "http://")
+    else:
+        link1 = link1
     link2 = soup.findAll('i')[0].text
     response = requests.get(link1)
     with open(link2, 'wb') as f:
