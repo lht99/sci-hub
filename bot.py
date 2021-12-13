@@ -32,19 +32,19 @@ def sci(update, context):
     update.message.reply_text("Retrieving: " + sci_url)
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
-    link = soup.findAll('button')[0]["onclick"]
+    link = html_text.findAll('button')[0]["onclick"]
     link1 = link.split("'")[1]
     if link1[:2] == "//":
-        link1 = link1.replace("//", "http://")
+        link2 = link1.replace("//", "http://")
     else:
-        link1 = link1
-    link2 = soup.findAll('i')[0].text + ".pdf"
-    response = requests.get(link1)
-    with open(link2, 'wb') as f:
+        link2 = link1
+    link3 = html_text.findAll('i')[0].text + ".pdf"
+    response = requests.get(link2)
+    with open(link3, 'wb') as f:
                               f.write(response.content)
     f.close()
     update.message.reply_text("Your output file: \n")
-    context.bot.send_document(chat_id, open(link2, 'rb'),  reply_to_message_id = ids)                        
+    context.bot.send_document(chat_id, open(link3, 'rb'),  reply_to_message_id = ids)                        
 def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
