@@ -2,9 +2,6 @@ import requests
 import beautifulsoup4
 from beautifulsoup4 import BeautifulSoup as bs
 import logging
-import json
-import re
-from telegram import Bot as bot
 from telegram.ext import (
     Updater,
     CommandHandler,
@@ -34,7 +31,7 @@ def sci(update, context):
     url = update.message.text
     sci_url = 'https://sci-hub.se/' + url
     update.message.reply_text("Retrieving: " + sci_url)
-    html_text = requests.get(url).text
+    html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll('button')[0]["onclick"]
     link1 = link.split("'")[1]
