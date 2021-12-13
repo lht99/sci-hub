@@ -1,5 +1,4 @@
 import requests
-import beautifulsoup4
 from bs4 import BeautifulSoup as bs
 import logging
 from telegram.ext import (
