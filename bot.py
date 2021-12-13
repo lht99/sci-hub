@@ -1,5 +1,6 @@
 import requests
-from bs4 import BeautifulSoup as bs
+import beautifulsoup4
+from beautifulsoup4 import BeautifulSoup as bs
 import logging
 import json
 import re
