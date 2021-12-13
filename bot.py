@@ -38,7 +38,10 @@ def sci(update, context):
         link2 = link1.replace("//", "http://")
     else:
         link2 = link1
-    link3 = soup.findAll('i')[0].text + ".pdf"
+    link3 = soup.findAll('i')
+    if len(link3) == 0:
+        link3 = "your file.pdf"
+    else: link3 = soup.findAll('i')[0].text + ".pdf"
     response = requests.get(link2)
     with open(link3, 'wb') as f:
                               f.write(response.content)
