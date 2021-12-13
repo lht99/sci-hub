@@ -28,7 +28,7 @@ def sci(update, context):
     ids = update.message.message_id
     chat_id =  update.message.chat_id
     url = update.message.text
-    sci_url = 'https://sci-hub.se/' + url + ".pdf"
+    sci_url = 'https://sci-hub.se/' + url
     update.message.reply_text("Retrieving: " + sci_url)
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
@@ -38,7 +38,7 @@ def sci(update, context):
         link1 = link1.replace("//", "http://")
     else:
         link1 = link1
-    link2 = soup.findAll('i')[0].text
+    link2 = soup.findAll('i')[0].text + ".pdf"
     response = requests.get(link1)
     with open(link2, 'wb') as f:
                               f.write(response.content)
