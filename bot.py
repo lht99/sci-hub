@@ -34,7 +34,7 @@ def sci(update, context):
     update.message.reply_text("soup")
     link = soup.findAll("button")
     update.message.reply_text("button")
-    link1 = link["onclick"].split("'")[1]
+    link1 = link[0]["onclick"].split("'")[1]
     update.message.reply_text("link1_OK")
     update.message.reply_text(link1)
     if link1[:2] == "//":
