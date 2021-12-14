@@ -32,7 +32,7 @@ def sci(update, context):
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
     update.message.reply_text("soup")
-    link = soup.findAll("button")[0]
+    link = soup.findAll("button")
     update.message.reply_text("button")
     link1 = link["onclick"].split("'")[1]
     update.message.reply_text("link1_OK")
