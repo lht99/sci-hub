@@ -27,28 +27,23 @@ def start(update, context):
 def sci(update, context):
     ids = update.message.message_id
     chat_id =  update.message.chat_id
-    url = update.message.text
-    sci_url = 'https://sci-hub.se/' + url
-    update.message.reply_text("Retrieving: " + sci_url)
+    ur = update.message.text
+    sci_url = 'https://sci-hub.se/' + str(ur)
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
-    link = soup.findAll('button')[0]["onclick"].split("'")[1]
+    link = soup.findAll("button")[0]["onclick"].split("'")[1]
     update.message.reply_text("Link: " + link)
     if link[:2] == "//":
         link2 = link.replace("//", "http://")
-        update.message.reply_text("Link2if: " + link2)
     else:
         link2 = link
-        update.message.reply_text("Link2else: " + link2)
     link3 = soup.findAll('i')
-    update.message.reply_text("Link3: ")
-    
+    link5 = link3[0].text.split(".")[0]
     if len(link3) == 0:
         link4 = "your file.pdf"
-        update.message.reply_text("Link4: " + link4)
-    else: 
-        link4 = link3[0].text + ".pdf"
-        update.message.reply_text("Link5: " + link4)
+    else:
+        link4 = link5 + ".pdf"
+        
     response = requests.get(link2)
     with open(link4, 'wb') as f:
                               f.write(response.content)
