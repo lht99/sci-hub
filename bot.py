@@ -46,14 +46,14 @@ def sci(update, context):
         link4 = "your file.pdf"
         update.message.reply_text("Link4: " + link4)
     else: 
-        link5 = link3[0].text + ".pdf"
-        update.message.reply_text("Link5: " + link5)
+        link4 = link3[0].text + ".pdf"
+        update.message.reply_text("Link5: " + link4)
     response = requests.get(link2)
-    with open(link3, 'wb') as f:
+    with open(link4, 'wb') as f:
                               f.write(response.content)
     f.close()
     update.message.reply_text("Your output file: \n")
-    context.bot.send_document(chat_id, open(link3, 'rb'),  reply_to_message_id = ids)                        
+    context.bot.send_document(chat_id, open(link4, 'rb'),  reply_to_message_id = ids)                        
 def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
