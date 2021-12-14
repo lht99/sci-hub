@@ -31,7 +31,11 @@ def sci(update, context):
     sci_url = 'https://sci-hub.se/' + str(ur)
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
-    link = soup.findAll("button")[0]["onclick"].split("'")[1]
+    update.message.reply_text("soup")
+    link = soup.findAll("button")[0]
+    update.message.reply_text("link0OK")
+    link1 = link["onclick"].split("'")[1]
+    update.message.reply_text("link1OK")
     update.message.reply_text("Link: " + link)
     if link[:2] == "//":
         link2 = link.replace("//", "http://")
