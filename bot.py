@@ -55,10 +55,9 @@ def sci(update, context):
         with open(title2, 'wb') as f:
             f.write(response.content)
         f.close()
-        try:
-            update.message.reply_text("Your output file: \n")
-            context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
-        except: update.message.reply_text("File too large, check link and download")
+        update.message.reply_text("Your output file: \n")
+        context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
+        
     except:
         update.message.reply_text("File not found")
         
