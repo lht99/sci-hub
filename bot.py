@@ -32,25 +32,30 @@ def sci(update, context):
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
-    link1 = link[0]["onclick"].split("'")[1]
-    if link1[:2] == "//":
-        link2 = link1.replace("//", "http://")
-        update.message.reply_text(link2)
+    title = soup.findAll('i')
+    link1 = link[0]
+    link2 = link1
+    link3 = link2["onclick"]
+    link4 = link3.split("'")
+    link5 = link4[1]
+    if link4[:2] == "//":
+        link6 = link5.replace("//", "http://")
+        update.message.reply_text(link6)
     else:
-        link2 = link1
-        update.message.reply_text(link2)
-    link3 = soup.findAll('i')
-    link5 = link3[0].text.split(".")[0]
-    if len(link3) == 0:
-        link4 = "your file.pdf"
+        link6 = link5
+        update.message.reply_text(link6)
+    
+    title1 = title[0].text.split(".")[0]
+    if len(title1) == 0:
+        title2 = "your file.pdf"
     else:
-        link4 = link5 + ".pdf"
-    response = requests.get(link2)
-    with open(link4, 'wb') as f:
+        title2 = title1 + ".pdf"
+    response = requests.get(link6)
+    with open(title2, 'wb') as f:
                               f.write(response.content)
     f.close()
     update.message.reply_text("Your output file: \n")
-    context.bot.send_document(chat_id, open(link4, 'rb'),  reply_to_message_id = ids)                        
+    context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id = ids)                        
 def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
