@@ -33,6 +33,7 @@ def sci(update, context):
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll('button')[0]["onclick"].split("'")[1]
+    update.message.reply_text("Link: " + link)
     if link[:2] == "//":
         link2 = link.replace("//", "http://")
         update.message.reply_text("Link2if: " + link2)
