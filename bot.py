@@ -31,30 +31,20 @@ def sci(update, context):
     sci_url = 'https://sci-hub.se/' + str(ur)
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
-    update.message.reply_text("soup")
     link = soup.findAll("button")
-    update.message.reply_text("button")
     link1 = link[0]["onclick"].split("'")[1]
-    update.message.reply_text("link1_OK")
-    update.message.reply_text(link1)
     if link1[:2] == "//":
         link2 = link1.replace("//", "http://")
-        update.message.reply_text("link2if_OK")
         update.message.reply_text(link2)
     else:
         link2 = link1
         update.message.reply_text(link2)
-        update.message.reply_text("link2else_OK")
     link3 = soup.findAll('i')
-    update.message.reply_text("link3_OK")
     link5 = link3[0].text.split(".")[0]
     if len(link3) == 0:
         link4 = "your file.pdf"
-        #update.message.reply_text("Link4if_OK")
     else:
         link4 = link5 + ".pdf"
-        update.message.reply_text("Link4else_OK")
-        
     response = requests.get(link2)
     with open(link4, 'wb') as f:
                               f.write(response.content)
