@@ -38,7 +38,7 @@ def sci(update, context):
     link3 = link2["onclick"]
     link4 = link3.split("'")
     link5 = link4[1]
-    if link4[:2] == "//":
+    if link5[:2] == "//":
         link6 = link5.replace("//", "http://")
         update.message.reply_text(link6)
     else:
