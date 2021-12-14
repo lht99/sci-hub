@@ -32,16 +32,16 @@ def sci(update, context):
     update.message.reply_text("Retrieving: " + sci_url)
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
-    link = soup.findAll('button')[0]["onclick"]
-    link1 = link.split("'")[1]
-    if link1[:2] == "//":
-        link2 = link1.replace("//", "http://")
+    link = soup.findAll('button')[0]["onclick"].split("'")[1]
+    if link[:2] == "//":
+        link2 = link.replace("//", "http://")
     else:
-        link2 = link1
+        link2 = link
     link3 = soup.findAll('i')
     if len(link3) == 0:
         link3 = "your file.pdf"
-    else: link3 = soup.findAll('i')[0].text + ".pdf"
+    else: 
+        link3 = soup.findAll('i')[0].text + ".pdf"
     response = requests.get(link2)
     with open(link3, 'wb') as f:
                               f.write(response.content)
