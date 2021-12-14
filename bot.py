@@ -39,18 +39,20 @@ def sci(update, context):
     update.message.reply_text(link1)
     if link1[:2] == "//":
         link2 = link1.replace("//", "http://")
-        update.message.reply_text("link2if_OK")
+        update.message.reply_text("link2if_OK" + )
+        update.message.reply_text(link2)
     else:
         link2 = link1
         update.message.reply_text("link2else_OK")
     link3 = soup.findAll('i')
     update.message.reply_text("link3_OK")
-    update.message.reply_text(link3)
     link5 = link3[0].text.split(".")[0]
     if len(link3) == 0:
         link4 = "your file.pdf"
+        update.message.reply_text("Link4if_OK")
     else:
         link4 = link5 + ".pdf"
+        update.message.reply_text("Link4else_OK")
         
     response = requests.get(link2)
     with open(link4, 'wb') as f:
