@@ -21,7 +21,8 @@ logger = logging.getLogger(__name__)
 
 TOKEN = "5028841551:AAHzMiqba6h6G1WcrGeNN08Jk2juiwNj_ss"
 persistence = PicklePersistence('./db', store_user_data = True)
-
+def nothing(update, context):
+    update.message.reply_text('Xin chào, nhập link để tải nhé')
 def start(update, context):
     update.message.reply_text('Xin chào, mình lập Bot này để hỗ trợ mọi người tải file pdf từ sci-hub')
 def sci(update, context):
@@ -79,6 +80,7 @@ def main():
     dp.add_handler(CommandHandler("start", start))
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.regex('^(http|https|www).*$'), sci))
+    dp.add_handler(MessageHandler(~(Filters.command | Filters.regex('^(http|https|www).*$')), nothing)
 
     # log all errors
     dp.add_error_handler(error)
