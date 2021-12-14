@@ -57,7 +57,6 @@ def sci(update, context):
         f.close()
         update.message.reply_text("Your output file: \n")
         context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
-        
     except:
         update.message.reply_text("File not found")
         
