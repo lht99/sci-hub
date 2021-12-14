@@ -80,7 +80,7 @@ def main():
     dp.add_handler(CommandHandler("start", start))
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.regex('^(http|https|www).*$'), sci))
-    dp.add_handler(MessageHandler(~(Filters.command | Filters.regex('^(http|https|www).*$')), nothing)
+    dp.add_handler(MessageHandler(~(Filters.command | Filters.regex('^(http|https|www).*$')), nothing))
 
     # log all errors
     dp.add_error_handler(error)
