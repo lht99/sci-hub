@@ -35,13 +35,19 @@ def sci(update, context):
     link = soup.findAll('button')[0]["onclick"].split("'")[1]
     if link[:2] == "//":
         link2 = link.replace("//", "http://")
+        update.message.reply_text("Link2if: " + link2)
     else:
         link2 = link
+        update.message.reply_text("Link2else: " + link2)
     link3 = soup.findAll('i')
+    update.message.reply_text("Link3: " + link3)
+    
     if len(link3) == 0:
-        link3 = "your file.pdf"
+        link4 = "your file.pdf"
+        update.message.reply_text("Link4: " + link4)
     else: 
-        link3 = soup.findAll('i')[0].text + ".pdf"
+        link5 = link3[0].text + ".pdf"
+        update.message.reply_text("Link5: " + link5)
     response = requests.get(link2)
     with open(link3, 'wb') as f:
                               f.write(response.content)
