@@ -40,7 +40,7 @@ def sci(update, context):
         link2 = link
         update.message.reply_text("Link2else: " + link2)
     link3 = soup.findAll('i')
-    update.message.reply_text("Link3: " + link3)
+    update.message.reply_text("Link3: ")
     
     if len(link3) == 0:
         link4 = "your file.pdf"
