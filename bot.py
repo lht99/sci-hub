@@ -39,7 +39,7 @@ def sci(update, context):
     update.message.reply_text(link1)
     if link1[:2] == "//":
         link2 = link1.replace("//", "http://")
-        update.message.reply_text("link2if_OK" + )
+        update.message.reply_text("link2if_OK")
         update.message.reply_text(link2)
     else:
         link2 = link1
