@@ -36,11 +36,16 @@ def sci(update, context):
     update.message.reply_text("button")
     link1 = link["onclick"].split("'")[1]
     update.message.reply_text("link1_OK")
-    if link[:2] == "//":
-        link2 = link.replace("//", "http://")
+    update.message.reply_text(link1)
+    if link1[:2] == "//":
+        link2 = link1.replace("//", "http://")
+        update.message.reply_text("link2if_OK")
     else:
-        link2 = link
+        link2 = link1
+        update.message.reply_text("link2else_OK")
     link3 = soup.findAll('i')
+    update.message.reply_text("link3_OK")
+    update.message.reply_text(link3)
     link5 = link3[0].text.split(".")[0]
     if len(link3) == 0:
         link4 = "your file.pdf"
