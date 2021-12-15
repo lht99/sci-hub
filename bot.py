@@ -21,10 +21,13 @@ logger = logging.getLogger(__name__)
 
 TOKEN = "5028841551:AAHzMiqba6h6G1WcrGeNN08Jk2juiwNj_ss"
 persistence = PicklePersistence('./db', store_user_data = True)
+
 def nothing(update, context):
     update.message.reply_text('Xin chào, nhập link để tải nhé')
+    
 def start(update, context):
     update.message.reply_text('Xin chào, mình lập Bot này để hỗ trợ mọi người tải file pdf từ sci-hub')
+    
 def sci(update, context):
     try:
         ids = update.message.message_id
@@ -58,9 +61,7 @@ def sci(update, context):
         f.close()
         update.message.reply_text("Your output file: \n")
         context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
-        
-    except:
-        update.message.reply_text("File not found or Too big to send")
+    except: update.message.reply_text("File not found or Too big to send")
         
 def error(update, context):
     """Log Errors caused by Updates."""
