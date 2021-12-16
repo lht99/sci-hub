@@ -39,7 +39,8 @@ def sci(update, context):
     ur = update.message.text
     update.message.reply_text(ur)
     sci_url = 'https://sci-hub.se/' + str(ur)
-    html_text = requests.post(sci_url).text
+    html_text = requests.request(
+        'GET', sci_url).text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
     title = soup.findAll('i')
