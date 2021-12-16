@@ -13,6 +13,7 @@ from telegram.ext import (
 import os
 
 PORT = int(os.environ.get('PORT', '8443'))
+
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -29,17 +30,20 @@ def start(update, context):
     update.message.reply_text('Xin chào, mình lập Bot này để hỗ trợ mọi người tải file pdf từ sci-hub')
     
 def sci(update, context):
+    ur = update.message.text
+    ids = update.message.message_id
+    chat_id = update.message.chat_id
+    sci_url = 'https://sci-hub.se/' + str(ur)
+    html_text = requests.get(sci_url).text
+    soup = bs(html_text, 'html.parser')
+    link = soup.findAll("button")
+    title = soup.findAll('i')
     try:
-        ur = update.message.text
-        ids = update.message.message_id
-        chat_id = update.message.chat_id
-        sci_url = 'https://sci-hub.se/' + ur
-        html_text = requests.get(sci_url).text
-        soup = bs(html_text, 'html.parser')
-        link = soup.findAll("button")
-        title = soup.findAll('i')
         link1 = link[0]
-        link2 = link1
+    except IndexError:
+        update.message.reply_text("Link 1" + "Error")
+    link2 = link1
+    try:
         link3 = link2["onclick"]
         link4 = link3.split("'")
         link5 = link4[1]
@@ -49,22 +53,19 @@ def sci(update, context):
         else:
             link6 = link5
             update.message.reply_text(link6)
-
         title1 = title[0].text.split(".")[0]
         if len(title1) == 0:
             title2 = "your file.pdf"
         else:
             title2 = title1 + ".pdf"
-        response = requests.get(link6)
+            response = requests.get(link6)
         with open(title2, 'wb') as f:
             f.write(response.content)
         f.close()
         update.message.reply_text("Your output file: \n")
         context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
-    except :
-        update.message.reply_text(link2)
-        update.message.reply_text(title1)
-        
+    except IndexError:
+        update.message.reply_text("Link 2")
 def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
