@@ -36,7 +36,7 @@ def sci(update, context):
     sci_url = 'https://sci-hub.se/' + str(ur)
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
-    link = soup.findAll("button")
+    link = soup.findAll("button")[0]
     title = soup.findAll('i')
     try:
         if len(link) != 0:
