@@ -46,12 +46,12 @@ def sci(update, context):
             else:
                 link6 = link1
                 update.message.reply_text(link6)
+            response = requests.get(link6)
             if len(title) != 0:
                 title1 = title[0].text.split(".")[0]
                 title2 = title1 + ".pdf"
             else:
                 title2 = "your_file.pdf"
-            response = requests.get(link6)
             with open(title2, 'wb') as f:
                 f.write(response.content)
             f.close()
