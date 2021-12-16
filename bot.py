@@ -64,7 +64,7 @@ def sci(update, context):
                 update.message.reply_text(link6)
         else:
             update.message.reply_text("Look like link is not found Or Wrong Link")
-    exept:
+    except:
         update.message.reply_text("__ERROR__")
         
 def error(update, context):
