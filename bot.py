@@ -61,8 +61,7 @@ def sci(update, context):
         else:
              update.message.reply_text("Your output file too big :v")
     except IndexError:
-        update.message.reply_text("Link1: " + str(len(link)))
-        update.message.reply_text("title0: " + str(len(title[0])))
+        update.message.reply_text("Link1: ")
         
 def error(update, context):
     """Log Errors caused by Updates."""
