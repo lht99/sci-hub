@@ -60,7 +60,7 @@ def sci(update, context):
             f.write(response.content)
         f.close()
         file_size = os.path.getsize(title2)
-        update.message.reply_text("Your output file: \n" + int(file_size))
+        update.message.reply_text("Your output file: \n" + file_size)
         context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
     except IndexError:
         update.message.reply_text("Link 3")
