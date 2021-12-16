@@ -40,10 +40,7 @@ def sci(update, context):
     title = soup.findAll('i')
     try:
         link1 = link[0]
-    except IndexError:
-        update.message.reply_text("Link 1" + "Error")
-    link2 = link1
-    try:
+        link2 = link1
         link3 = link2["onclick"]
         link4 = link3.split("'")
         link5 = link4[1]
