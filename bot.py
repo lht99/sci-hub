@@ -40,8 +40,7 @@ def sci(update, context):
     title = soup.findAll('i')
     try:
         link1 = link[0]
-        link2 = link1
-        link3 = link2["onclick"]
+        link3 = link1["onclick"]
         link4 = link3.split("'")
         link5 = link4[1]
         if link5[:2] == "//":
@@ -63,7 +62,9 @@ def sci(update, context):
         update.message.reply_text("Your output file: \n" + file_size)
         context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
     except IndexError:
-        update.message.reply_text("Link 3")
+        update.message.reply_text("Link1: " + str(len(link1)))
+        update.message.reply_text("Link5: " + str(len(link5)))
+        update.message.reply_text("title0: " + str(len(title[0])))
 def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
