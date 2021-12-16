@@ -37,6 +37,7 @@ def sci(update, context):
     ids = update.message.message_id
     chat_id = update.message.chat_id
     ur = update.message.text
+    update.message.reply_text(ur)
     sci_url = 'https://sci-hub.se/' + str(ur)
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
