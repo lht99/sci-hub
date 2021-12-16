@@ -37,19 +37,14 @@ def sci(update, context):
         sci_url = 'https://sci-hub.se/' + str(ur)
         html_text = requests.get(sci_url).text
         soup = bs(html_text, 'html.parser')
-        link = soup.findAll("button")
+        link = soup.findAll("button")[0]["onclick"].split("'")[1]
         title = soup.findAll('i')
-        link1 = link[0]
-        link2 = link1
-        link3 = link2["onclick"]
-        link4 = link3.split("'")
-        link5 = link4[1]
-        if link5[:2] == "//":
-            link6 = link5.replace("//", "http://")
-            update.message.reply_text(link6)
+        if link[:2] == "//":
+            link6 = link.replace("//", "http://")
+            update.message.reply_text(link)
         else:
-            link6 = link5
-            update.message.reply_text(link6)
+            link6 = link
+            update.message.reply_text(link)
         title1 = title[0].text.split(".")[0]
         if len(title1) == 0:
             title2 = "your file.pdf"
