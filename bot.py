@@ -46,10 +46,10 @@ def sci(update, context):
             update.message.reply_text(link6)
         response = requests.get(link6)
         title = soup.findAll('i')
-        title1 = title[0].text.split(".")[0]
-        if len(title1) == 0:
+        if len(title) == 0:
             title2 = "your file.pdf"
         else:
+            title1 = title[0].text.split(".")[0]
             title2 = title1 + ".pdf"
         with open(title2, 'wb') as f:
             f.write(response.content)
