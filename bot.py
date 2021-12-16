@@ -61,7 +61,9 @@ def sci(update, context):
         f.close()
         update.message.reply_text("Your output file: \n")
         context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
-    except: error(update, context)
+    except :
+        update.message.reply_text(link2)
+        update.message.reply_text(title1)
         
 def error(update, context):
     """Log Errors caused by Updates."""
