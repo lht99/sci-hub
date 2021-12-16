@@ -46,19 +46,19 @@ def sci(update, context):
             else:
                 link6 = link1
                 update.message.reply_text(link6)
-            response = requests.get(link6)
             if len(title) != 0:
                 title1 = title[0].text.split(".")[0]
                 title2 = title1 + ".pdf"
             else:
                 title2 = "your_file.pdf"
+            response = requests.get(link6)
             with open(title2, 'wb') as f:
                 f.write(response.content)
-            f.close()
             file_size = os.path.getsize(title2)
             if int(file_size) < 50000000:
                 update.message.reply_text("Your output file: \n" + title2)
                 context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
+                f.close()
             else: 
                 update.message.reply_text("Your file is too big \nClick link to down load")
                 update.message.reply_text(link6)
