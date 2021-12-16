@@ -36,9 +36,9 @@ def sci(update, context):
     sci_url = 'https://sci-hub.se/' + str(ur)
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
-    link = soup.findAll("button")
-    title = soup.findAll('i')
     try:
+        link = soup.findAll("button")
+        title = soup.findAll('i')
         link1 = link[0]
         link3 = link1["onclick"]
         link4 = link3.split("'")
