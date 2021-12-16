@@ -41,10 +41,10 @@ def sci(update, context):
         title = soup.findAll('i')
         if link[:2] == "//":
             link6 = link.replace("//", "http://")
-            update.message.reply_text(link)
+            update.message.reply_text(link6)
         else:
             link6 = link
-            update.message.reply_text(link)
+            update.message.reply_text(link6)
         title1 = title[0].text.split(".")[0]
         if len(title1) == 0:
             title2 = "your file.pdf"
