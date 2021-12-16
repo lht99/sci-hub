@@ -59,10 +59,11 @@ def sci(update, context):
         with open(title2, 'wb') as f:
             f.write(response.content)
         f.close()
-        update.message.reply_text("Your output file: \n")
+        file_size = os.path.getsize(title2)
+        update.message.reply_text("Your output file: \n" + int(file_size))
         context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
     except IndexError:
-        update.message.reply_text("Link 2")
+        update.message.reply_text("Link 3")
 def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
