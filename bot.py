@@ -30,13 +30,13 @@ def start(update, context):
     update.message.reply_text('Xin chào, mình lập Bot này để hỗ trợ mọi người tải file pdf từ sci-hub')
     
 def sci(update, context):
+    ids = update.message.message_id
+    chat_id = update.message.chat_id
+    ur = update.message.text
+    sci_url = 'https://sci-hub.se/' + str(ur)
+    html_text = requests.get(sci_url).text
+    soup = bs(html_text, 'html.parser')
     try:
-        ids = update.message.message_id
-        chat_id = update.message.chat_id
-        ur = update.message.text
-        sci_url = 'https://sci-hub.se/' + str(ur)
-        html_text = requests.get(sci_url).text
-        soup = bs(html_text, 'html.parser')
         link = soup.findAll("button")[0]["onclick"].split("'")[1]
         title = soup.findAll('i')
         if link[:2] == "//":
