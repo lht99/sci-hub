@@ -60,12 +60,16 @@ def sci(update, context):
             f.write(response.content)
         f.close()
         file_size = os.path.getsize(title2)
-        update.message.reply_text("Your output file: \n" + str(file_size))
-        context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
+        if file_size < 50000000:
+            update.message.reply_text("Your output file: \n")
+            context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
+        else:
+             update.message.reply_text("Your output file too big :v")
     except IndexError:
         update.message.reply_text("Link1: " + str(len(link1)))
         update.message.reply_text("Link5: " + str(len(link5)))
         update.message.reply_text("title0: " + str(len(title[0])))
+        
 def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
