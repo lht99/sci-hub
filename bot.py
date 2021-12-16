@@ -36,38 +36,36 @@ def sci(update, context):
     sci_url = 'https://sci-hub.se/' + str(ur)
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
+    link = soup.findAll("button")
+    title = soup.findAll('i')
     try:
-        link = soup.findAll("button")
-        title = soup.findAll('i')
         if len(link) != 0:
             link1 = link[0]["onclick"].split("'")[1]
-            if link[:2] == "//":
-                link6 = link.replace("//", "http://")
-                update.message.reply_text(link6)
+            if link1[:2] == "//":
+                link6 = link1.replace("//", "http://")
             else:
-                link6 = link
+                link6 = link1
                 update.message.reply_text(link6)
+            if len(title) != 0:
+                title1 = title[0].text.split(".")[0]
+                title2 = title1 + ".pdf"
+            else:
+                title2 = "your_file.pdf"
             response = requests.get(link6)
-        else: 
-            update.message.reply_text("Link die")
-            link2 = []
-        if len(title) != 0 and len(link2) != 0 :
-            title1 = title[0].text.split(".")[0]
-            title2 = title1 + ".pdf"
             with open(title2, 'wb') as f:
                 f.write(response.content)
-        elif len(title) == 0 and len(link2) != 0: 
-            title2 = "your file.pdf"
-            with open(title2, 'wb') as f:
-                f.write(response.content)
-        file_size = os.path.getsize(title2)
-        if int(file_size) < 50000000:
-            update.message.reply_text("Your output file: \n" + title2)
-            context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
+            f.close()
+            file_size = os.path.getsize(title2)
+            if int(file_size) < 50000000:
+                update.message.reply_text("Your output file: \n" + title2)
+                context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
+            else: 
+                update.message.reply_text("Your file is too big \nClick link to down load")
+                update.message.reply_text(link6)
         else:
-             update.message.reply_text("Your output file too big :v")
-    except IndexError:
-        update.message.reply_text(title)
+            update.message.reply_text("Look like link is not found Or Wrong Link")
+    exept:
+        update.message.reply_text("__ERROR__")
         
 def error(update, context):
     """Log Errors caused by Updates."""
