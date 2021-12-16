@@ -36,7 +36,7 @@ def sci(update, context):
     sci_url = 'https://sci-hub.se/' + str(ur)
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
-    link = soup.findAll("button")[0]
+    link = soup.findAll("button")
     title = soup.findAll('i')
     try:
         if len(link) != 0:
@@ -54,17 +54,17 @@ def sci(update, context):
             response = requests.get(link6)
             with open(title2, 'wb') as f:
                 f.write(response.content)
+            f.close()
             file_size = os.path.getsize(title2)
             if int(file_size) < 50000000:
                 update.message.reply_text("Your output file: \n" + title2)
                 context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
-                f.close()
             else: 
                 update.message.reply_text("Your file is too big \nClick link to down load")
                 update.message.reply_text(link6)
         else:
             update.message.reply_text("Look like link is not found Or Wrong Link")
-    except:
+    except IndexError:
         update.message.reply_text("__ERROR__")
         
 def error(update, context):
