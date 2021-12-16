@@ -31,16 +31,17 @@ def start(update, context):
     
 def sci(update, context):
     try:
-        ur = update.message.text
         ids = update.message.message_id
         chat_id = update.message.chat_id
+        ur = update.message.text
         sci_url = 'https://sci-hub.se/' + str(ur)
         html_text = requests.get(sci_url).text
         soup = bs(html_text, 'html.parser')
         link = soup.findAll("button")
         title = soup.findAll('i')
         link1 = link[0]
-        link3 = link1["onclick"]
+        link2 = link 1
+        link3 = link2["onclick"]
         link4 = link3.split("'")
         link5 = link4[1]
         if link5[:2] == "//":
