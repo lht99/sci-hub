@@ -30,10 +30,10 @@ def start(update, context):
     
 def sci(update, context):
     try:
+        ur = update.message.text
         ids = update.message.message_id
         chat_id = update.message.chat_id
-        ur = update.message.text
-        sci_url = 'https://sci-hub.se/' + str(ur)
+        sci_url = 'https://sci-hub.se/' + ur
         html_text = requests.get(sci_url).text
         soup = bs(html_text, 'html.parser')
         link = soup.findAll("button")
@@ -61,8 +61,7 @@ def sci(update, context):
         f.close()
         update.message.reply_text("Your output file: \n")
         context.bot.send_document(chat_id, open(title2, 'rb'),  reply_to_message_id=ids)
-    except IndexError:
-        update.message.reply_text("Index Error")
+    except : error
         
 def error(update, context):
     """Log Errors caused by Updates."""
