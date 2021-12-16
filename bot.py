@@ -1,4 +1,4 @@
-import requests as req
+import requests
 from bs4 import BeautifulSoup as bs
 import logging
 from telegram.ext import (
@@ -39,7 +39,7 @@ def sci(update, context):
     ur = update.message.text
     update.message.reply_text(ur)
     sci_url = 'https://sci-hub.se/' + str(ur)
-    html_text = req.get(sci_url).text
+    html_text = requests.post(sci_url).text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
     title = soup.findAll('i')
