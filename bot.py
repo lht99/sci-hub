@@ -40,7 +40,7 @@ def sci(update, context):
         link = soup.findAll("button")
         title = soup.findAll('i')
         link1 = link[0]
-        link2 = link 1
+        link2 = link1
         link3 = link2["onclick"]
         link4 = link3.split("'")
         link5 = link4[1]
