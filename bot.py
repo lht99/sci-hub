@@ -37,23 +37,29 @@ def sci(update, context):
     html_text = requests.get(sci_url).text
     soup = bs(html_text, 'html.parser')
     try:
-        link = soup.findAll("button")[0]["onclick"].split("'")[1]
-        if link[:2] == "//":
-            link6 = link.replace("//", "http://")
-            update.message.reply_text(link6)
-        else:
-            link6 = link
-            update.message.reply_text(link6)
-        response = requests.get(link6)
+        link = soup.findAll("button")
         title = soup.findAll('i')
-        if len(title) == 0:
-            title2 = "your file.pdf"
-        else:
+        if len(link) != 0:
+            link1 = link[0]["onclick"].split("'")[1]
+            if link[:2] == "//":
+                link6 = link.replace("//", "http://")
+                update.message.reply_text(link6)
+            else:
+                link6 = link
+                update.message.reply_text(link6)
+            response = requests.get(link6)
+        else: 
+            update.message.reply_text("Link die")
+            link2 = []
+        if len(title) != 0 and len(link2) != 0 :
             title1 = title[0].text.split(".")[0]
             title2 = title1 + ".pdf"
-        with open(title2, 'wb') as f:
-            f.write(response.content)
-        f.close()
+            with open(title2, 'wb') as f:
+                f.write(response.content)
+        elif len(title) == 0 and len(link2) != 0: 
+            title2 = "your file.pdf"
+            with open(title2, 'wb') as f:
+                f.write(response.content)
         file_size = os.path.getsize(title2)
         if int(file_size) < 50000000:
             update.message.reply_text("Your output file: \n" + title2)
