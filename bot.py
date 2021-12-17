@@ -70,7 +70,7 @@ def sci(update, context):
                     "Your file is too big \nClick link to down load")
                 update.message.reply_text(link6)
         else:
-            text = requests.request('GET', sci_url, headers=headers).status_code
+            text = str(requests.request('GET', sci_url, headers=headers).status_code) + " ERROR CODE. From_user: " + str(update.message.from_user)
             update.message.reply_text("Look like link is not found Or Wrong Link")
             context.bot.send_message('-624406509', text)
             
