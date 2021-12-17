@@ -37,7 +37,6 @@ def sci(update, context):
     ids = update.message.message_id
     chat_id = update.message.chat_id
     ur = update.message.text
-    update.message.reply_text(ur)
     sci_url = 'https://sci-hub.se/' + str(ur)
     html_text = requests.request(
         'GET', sci_url).text
@@ -63,7 +62,7 @@ def sci(update, context):
                 f.write(response.content)
             file_size = os.path.getsize(title2)
             if file_size < 50000000:
-                update.message.reply_text("Your output file: \n" + title2)
+                update.message.reply_text("Your output file: \n")
                 context.bot.send_document(chat_id, open(
                     title2, 'rb'),  reply_to_message_id=ids)
             else:
@@ -73,6 +72,7 @@ def sci(update, context):
         else:
             update.message.reply_text(
                 "Look like link is not found Or Wrong Link")
+            update.message.reply_text(html_text.status_code)
     except IndexError:
         update.message.reply_text("__ERROR__")
 
