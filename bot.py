@@ -72,7 +72,7 @@ def sci(update, context):
         else:
             text = requests.request('GET', sci_url, headers=headers).status_code
             update.message.reply_text("Look like link is not found Or Wrong Link")
-            context.bot.send_message('-624406509', text,  reply_to_message_id = ids)
+            context.bot.send_message('-624406509', text)
             
     except IndexError:
         update.message.reply_text("__ERROR__")
