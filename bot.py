@@ -41,7 +41,7 @@ def sci(update, context):
               'upgrade-insecure-requests': '1'}
     ur = update.message.text
     sci_url = 'https://sci-hub.se/' + str(ur)
-    ress = requests.session()
+    ress = requests.Session()
     ress.headers = headers
     html_text = ress.get(sci_url).text
     soup = bs(html_text, 'html.parser')
