@@ -36,11 +36,11 @@ def start(update, context):
 def sci(update, context):
     ids = update.message.message_id
     chat_id = update.message.chat_id
-    headers = {'Referer': 'https://sci-hub.se/'
-               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'}
+    headers = {'Referer': r'https://sci-hub.se/'
+               'User-Agent': r'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'}
     ur = update.message.text
     sci_url = 'https://sci-hub.se/' + str(ur)
-    html_text = requests.request('GET', sci_url, headers=headers).text
+    html_text = requests.get(sci_url, headers=headers).text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
     title = soup.findAll('i')
