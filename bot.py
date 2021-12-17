@@ -38,8 +38,7 @@ def sci(update, context):
     chat_id = update.message.chat_id
     ur = update.message.text
     sci_url = 'https://sci-hub.se/' + str(ur)
-    html_text = requests.request(
-        'GET', sci_url).text
+    html_text = requests.request('GET', sci_url).text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
     title = soup.findAll('i')
@@ -70,9 +69,8 @@ def sci(update, context):
                     "Your file is too big \nClick link to down load")
                 update.message.reply_text(link6)
         else:
-            update.message.reply_text(
-                "Look like link is not found Or Wrong Link")
-            update.message.reply_text(html_text.status_code)
+            update.message.reply_text("Look like link is not found Or Wrong Link")
+            update.message.reply_text(requests.request('GET', sci_url).status_code)
     except IndexError:
         update.message.reply_text("__ERROR__")
 
