@@ -12,7 +12,7 @@ from telegram.ext import (
 )
 import os
 
-PORT = int(os.environ.get('PORT', '8443'))
+PORT = int(os.environ.get('PORT', '443'))
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -36,7 +36,8 @@ def start(update, context):
 def sci(update, context):
     ids = update.message.message_id
     chat_id = update.message.chat_id
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'}
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'}
     ur = update.message.text
     sci_url = 'https://sci-hub.se/' + str(ur)
     html_text = requests.request('GET', sci_url, headers=headers).text
@@ -54,7 +55,7 @@ def sci(update, context):
                 update.message.reply_text(link6)
             if len(title) != 0:
                 title1 = title[0].text.split(".")[0]
-                title2 = title1 + ".pd
+                title2 = title1 + ".pdf"
             else:
                 title2 = "your_file.pdf"
             response = requests.get(link6)
@@ -70,10 +71,13 @@ def sci(update, context):
                     "Your file is too big \nClick link to down load")
                 update.message.reply_text(link6)
         else:
-            text = str(requests.request('GET', sci_url, headers=headers).status_code) + " ERROR CODE. From_user: " + str(update.message.from_user['username'])
-            update.message.reply_text("Look like link is not found Or Wrong Link")
+            text = str(requests.request('GET', sci_url, headers=headers).status_code) + \
+                       " ERROR CODE. From_user: " + \
+                           str(update.message.from_user['username'])
+            update.message.reply_text(
+                "Look like link is not found Or Wrong Link")
             context.bot.send_message('-624406509', text)
-            
+
     except IndexError:
         update.message.reply_text("__ERROR__")
 
