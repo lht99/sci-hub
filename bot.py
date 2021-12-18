@@ -85,7 +85,7 @@ def sci(update, context):
                 update.message.reply_text(link6)
         else:
             text = str(html_t.status_code) + " " + \
-                       " ERROR CODE. From_user: " + str(html_t.content) + \
+                       " ERROR CODE. From_user: " + str(html_t.content.decode('utf-8')) + " " +\
                            str(update.message.from_user['username'])
             update.message.reply_text(
                 "Look like link is not found Or Wrong Link")
