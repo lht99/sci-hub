@@ -52,6 +52,7 @@ def sci(update, context):
     http = requests.Session()
     http.headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'})
     html_text = http.request('GET', sci_url).text
+    http.close()
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
     title = soup.findAll('i')
