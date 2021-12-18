@@ -84,8 +84,8 @@ def sci(update, context):
                     "Your file is too big \nClick link to down load")
                 update.message.reply_text(link6)
         else:
-            text = str(html_t.status_code) + " " + str(html_t.content.decode('utf-8')) + \
-                       " ERROR CODE. From_user: " +\
+            text = str(html_t.status_code) + " - ERROR CODE. " + str(html_t.content.decode('utf-8')) + \
+                       " From_user: " +\
                            str(update.message.from_user['username'])
             update.message.reply_text(
                 "Look like link is not found Or Wrong Link")
