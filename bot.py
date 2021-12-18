@@ -39,7 +39,9 @@ def sci(update, context):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'}
     ur = update.message.text
     sci_url = 'https://sci-hub.ru/' + str(ur)
-    html_text = requests.request('GET', sci_url, headers = headers).text
+    session = requests.Session()
+    session.headers.update(headers)
+    html_text = session.request('GET', sci_url).text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
     title = soup.findAll('i')
@@ -54,7 +56,7 @@ def sci(update, context):
                 update.message.reply_text(link6)
             if len(title) != 0:
                 title1 = title[0].text.split(".")[0]
-                title2 = title1 + ".pdf"
+                title2 = title1 + ".pd
             else:
                 title2 = "your_file.pdf"
             response = requests.get(link6)
