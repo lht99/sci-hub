@@ -51,7 +51,8 @@ def sci(update, context):
     sci_url = 'https://sci-hub.se/' + str(ur)
     http = requests.Session()
     http.headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'})
-    html_text = http.request('GET', sci_url).text
+    html_t = http.request('GET', sci_url)
+    html_text = html_t.text
     http.close()
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
@@ -83,8 +84,8 @@ def sci(update, context):
                     "Your file is too big \nClick link to down load")
                 update.message.reply_text(link6)
         else:
-            text = str(requests.request('GET', sci_url, headers=headers).status_code) + \
-                       " ERROR CODE. From_user: " + \
+            text = str(html_t.status_code) + " " + \
+                       " ERROR CODE. From_user: " + str(html_t.content) + \
                            str(update.message.from_user['username'])
             update.message.reply_text(
                 "Look like link is not found Or Wrong Link")
