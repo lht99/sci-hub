@@ -40,7 +40,7 @@ def sci(update, context):
     ur = update.message.text
     sci_url = 'https://sci-hub.se/' + str(ur)
     session = requests.Session()
-    html_text = session.get(sci_url).text
+    html_text = session.get(sci_url, verify=False).text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
     title = soup.findAll('i')
