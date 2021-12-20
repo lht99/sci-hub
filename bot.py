@@ -12,7 +12,7 @@ from telegram.ext import (
 )
 import os
 
-PORT = int(os.environ.get('PORT', '80'))
+PORT = int(os.environ.get('PORT', '8443'))
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -36,7 +36,7 @@ def start(update, context):
 def sci(update, context):
     ids = update.message.message_id
     chat_id = update.message.chat_id
-    headers = {'User-Agent': 'Mozilla/5.0'
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'
     }
 
     #headers = {
@@ -46,7 +46,7 @@ def sci(update, context):
     http = requests.Session()
     html_t = http.get(sci_url, headers = headers)
     html_text = html_t.text
-    http.close()
+    http.delete(sci_url)
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
     title = soup.findAll('i')
