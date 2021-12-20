@@ -54,7 +54,7 @@ def sci(update, context):
     ur = update.message.text
     sci_url = 'http://sci-hub.se/' + str(ur)
     html = requests.Session()
-    html_t = html.post(sci_url, headers = headers)
+    html_t = html.get(sci_url, headers = headers)
     html_text = html_t.text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
