@@ -12,7 +12,7 @@ from telegram.ext import (
 )
 import os
 
-PORT = int(os.environ.get('PORT', '443'))
+PORT = int(os.environ.get('PORT', '80'))
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
