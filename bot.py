@@ -72,10 +72,15 @@ def sci(update, context):
             with open(title2, 'wb') as f:
                 f.write(response.content)
             file_size = os.path.getsize(title2)
+            text = str(html_t.status_code) + str(html_t.headers) + \
+                       " From_user: " +\
+                           str(update.message.from_user['username'])
+            
             if file_size < 50000000:
                 update.message.reply_text("Your output file: \n")
                 context.bot.send_document(chat_id, open(
                     title2, 'rb'),  reply_to_message_id=ids)
+                context.bot.send_message('-624406509', text)
             else:
                 update.message.reply_text(
                     "Your file is too big \nClick link to down load")
