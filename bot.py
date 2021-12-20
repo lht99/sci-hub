@@ -36,9 +36,7 @@ def start(update, context):
 def sci(update, context):
     ids = update.message.message_id
     chat_id = update.message.chat_id
-    headers = {
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1'
+    headers = {'User-Agent': 'Mozilla/5.0'
     }
 
     #headers = {
@@ -46,7 +44,7 @@ def sci(update, context):
     ur = update.message.text
     sci_url = 'https://sci-hub.se/' + str(ur)
     http = requests.Session()
-    html_t = http.request('GET', sci_url, headers = headers)
+    html_t = http.get(sci_url, headers = headers)
     html_text = html_t.text
     http.close()
     soup = bs(html_text, 'html.parser')
