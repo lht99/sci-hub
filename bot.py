@@ -36,13 +36,17 @@ def start(update, context):
 def sci(update, context):
     ids = update.message.message_id
     chat_id = update.message.chat_id
-    headers = {'cache-control': 'max-age=0',
-               'referer': 'https://sci-hub.se/',
+    headers = {'accept':	'*/*',
+               'accept-encoding': 'gzip, deflate, br',
+               'cache-control': 'max-age=0',
+               'host': 'sci-hub.se'
+               'referer': 'https://letuan.edu.vn',
+               'Sec-Fetch-Dest': 'embed',
                'sec-fetch-mode': 'navigate',
                'sec-fetch-site': 'same-origin',
                'sec-fetch-user': '?1',
                'upgrade-insecure-requests': '1',
-               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'
+               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0'
     }
 
     #headers = {
