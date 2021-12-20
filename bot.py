@@ -40,9 +40,7 @@ def sci(update, context):
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
     'accept-encoding': 'gzip, deflate, br',
     'accept-language': 'en-US,en;q=0.9',
-    'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96", "Microsoft Edge";v="96"',
-    'sec-fetch-dest': 'document',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'
+    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1'
     }
 
     #headers = {
@@ -50,8 +48,7 @@ def sci(update, context):
     ur = update.message.text
     sci_url = 'https://sci-hub.se/' + str(ur)
     http = requests.Session()
-    http.headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'})
-    html_t = http.request('GET', sci_url)
+    html_t = http.request('GET', sci_url, headers = headers)
     html_text = html_t.text
     http.close()
     soup = bs(html_text, 'html.parser')
