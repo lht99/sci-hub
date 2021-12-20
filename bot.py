@@ -43,7 +43,7 @@ def sci(update, context):
         #'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'}
     ur = update.message.text
     sci_url = 'https://sci-hub.se/' + str(ur)
-    html_t = requests.get(sci_url, headers = headers, verify=False)
+    html_t = requests.get(sci_url)
     html_text = html_t.text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
