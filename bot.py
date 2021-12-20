@@ -36,7 +36,6 @@ def start(update, context):
 def sci(update, context):
     ids = update.message.message_id
     chat_id = update.message.chat_id
-    proxyList = {'http' : 'https://171.240.150.246:80'}
     headers = {'accept':	'*/*',
                'accept-encoding': 'gzip, deflate, br',
                'cache-control': 'max-age=0',
@@ -55,7 +54,7 @@ def sci(update, context):
     ur = update.message.text
     sci_url = 'http://sci-hub.se/' + str(ur)
     html = requests.Session()
-    html_t = html.post(sci_url, headers = headers, proxies=proxyList)
+    html_t = html.post(sci_url, headers = headers)
     html_text = html_t.text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
