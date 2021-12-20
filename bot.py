@@ -39,7 +39,7 @@ def sci(update, context):
     headers = {'accept':	'*/*',
                'accept-encoding': 'gzip, deflate, br',
                'cache-control': 'max-age=0',
-               'host': 'sci-hub.se'
+               'host': 'sci-hub.se',
                'referer': 'https://letuan.edu.vn',
                'Sec-Fetch-Dest': 'embed',
                'sec-fetch-mode': 'navigate',
