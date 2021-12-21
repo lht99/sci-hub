@@ -42,11 +42,6 @@ def sci(update, context):
                'accept-encoding': 'gzip, deflate, br',
                'cache-control': 'max-age=0',
                'referer': u,
-               'Sec-Fetch-Dest': 'embed',
-               'sec-fetch-mode': 'navigate',
-               'sec-fetch-site': 'same-origin',
-               'sec-fetch-user': '?1',
-               'upgrade-insecure-requests': '1',
                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0'
     }
 
