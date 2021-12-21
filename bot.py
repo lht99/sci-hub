@@ -11,6 +11,7 @@ from telegram.ext import (
     PicklePersistence,
 )
 import os
+import random
 
 PORT = int(os.environ.get('PORT', '8443'))
 
@@ -36,11 +37,12 @@ def start(update, context):
 def sci(update, context):
     ids = update.message.message_id
     chat_id = update.message.chat_id
+    u = "https://letuan.edu.vn/?letuanclid=" + str(random.randint(6, 9999999))
     headers = {'accept':	'*/*',
                'accept-encoding': 'gzip, deflate, br',
                'cache-control': 'max-age=0',
                'host': 'sci-hub.se',
-               'referer': 'https://letuan.edu.vn',
+               'referer': u,
                'Sec-Fetch-Dest': 'embed',
                'sec-fetch-mode': 'navigate',
                'sec-fetch-site': 'same-origin',
