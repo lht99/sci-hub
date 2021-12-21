@@ -37,11 +37,10 @@ def start(update, context):
 def sci(update, context):
     ids = update.message.message_id
     chat_id = update.message.chat_id
-    u = "https://letuan.edu.vn/?letuanclid=" + str(random.randint(6, 9999999))
+    u = 'https://letuan.edu.vn/?leclid=' + str(random.randint(6, 9999999))
     headers = {'accept':	'*/*',
                'accept-encoding': 'gzip, deflate, br',
                'cache-control': 'max-age=0',
-               'host': 'sci-hub.se',
                'referer': u,
                'Sec-Fetch-Dest': 'embed',
                'sec-fetch-mode': 'navigate',
@@ -54,10 +53,8 @@ def sci(update, context):
     #headers = {
         #'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'}
     ur = update.message.text
-    sci_url = 'http://sci-hub.se/' + str(ur)
-    html = requests.Session()
-    html.headers = headers
-    html_t = html.get(sci_url, verify=False)
+    sci_url = 'https://sci-hub.se/' + str(ur)
+    html_t = requests.get(sci_url, headers = headers, verify=False)
     html_text = html_t.text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
