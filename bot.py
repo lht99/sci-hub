@@ -37,10 +37,8 @@ def start(update, context):
 def sci(update, context):
     ids = update.message.message_id
     chat_id = update.message.chat_id
-    u = 'https://letuan.edu.vn/?leclid=' + str(random.randint(9, 9999999999))
+    u = 'https://moinhat123.bligspot.com/?redirect=' + str(random.randint(9, 9999999999))
     headers = {'accept':	'*/*',
-               'accept-encoding': 'gzip, deflate, br',
-               'cache-control': 'max-age=0',
                'referer': u,
                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0'
     }
