@@ -37,18 +37,17 @@ def start(update, context):
 def sci(update, context):
     ids = update.message.message_id
     chat_id = update.message.chat_id
+    ur = update.message.text
     u = 'https://moinhat123.blogspot.com/?redirect=' + str(random.randint(9, 9999999999))
-    headers = {'accept':	'*/*',
-               'referer': u,
+    headers = {'referer': u,
                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0'
     }
 
     #headers = {
-        #'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'}
-    ur = update.message.text
+        #'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'
     sci_url = 'https://sci-hub.se/' + str(ur)
     html = requests.Session()
-    html_t = html.get(sci_url, headers = headers)
+    html_t = html.post(sci_url, headers = headers)
     html_text = html_t.text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
