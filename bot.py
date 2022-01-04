@@ -49,7 +49,7 @@ def sci(update, context):
         #'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'
     sci_url = 'https://sci-hub.se/' + str(ur)
     html = requests.Session()
-    html1 = html.get('https://sci-hub.se/')
+    html1 = html.get('https://sci-hub.se/', timeout=30)
     html3 = html
     html3.cookies = html1.cookies
     html3.headers = headers
