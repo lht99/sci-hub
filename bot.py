@@ -39,8 +39,10 @@ def sci(update, context):
     chat_id = update.message.chat_id
     ur = update.message.text
     u = 'https://moinhat123.blogspot.com/?redirect=' + str(random.randint(9, 9999999999))
-    headers = {'referer': u,
-               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0'
+    headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+               'cache-control': 'no-cache',
+               'referer': u,
+               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62'
     }
 
     #headers = {
