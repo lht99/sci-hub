@@ -40,7 +40,6 @@ def sci(update, context):
     ur = update.message.text
     u = 'https://moinhat123.blogspot.com/?redirect=' + str(random.randint(9, 9999999999)) + r'/'
     headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-               'accept-encoding': 'gzip, deflate, br',
                'cache-control': 'no-cache',
                'content-type': 'application/x-www-form-urlencoded',
                'referer': u,
@@ -48,11 +47,10 @@ def sci(update, context):
                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62'
     }
 
-    #headers = {
-        #'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.57'
+   
     sci_url = 'https://sci-hub.se/' + str(ur)
     html = requests.Session()
-    html1 = html.get('https://sci-hub.se/', timeout=60)
+    html1 = html.get('https://sci-hub.se/')
     html3 = html
     html3.cookies = html1.cookies
     html3.headers = headers
