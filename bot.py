@@ -38,7 +38,7 @@ def sci(update, context):
     ids = update.message.message_id
     chat_id = update.message.chat_id
     ur = update.message.text
-    u = 'https://moinhat123.blogspot.com/?redirect=' + str(random.randint(9, 9999999999) + r'/')
+    u = 'https://moinhat123.blogspot.com/?redirect=' + str(random.randint(9, 9999999999)) + r'/'
     headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
                'accept-encoding': 'gzip, deflate, br',
                'cache-control': 'no-cache',
