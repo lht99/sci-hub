@@ -38,9 +38,8 @@ def sci(update, context):
     ids = update.message.message_id
     chat_id = update.message.chat_id
     ur = update.message.text
-    u = 'https://moinhat123.blogspot.com/?redirect=' + str(random.randint(9, 9999999999)) + r'/'
+    u = 'https://sci-hub.se/'
     headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-               'cache-control': 'no-cache',
                'content-type': 'application/x-www-form-urlencoded',
                'referer': u,
                'pragma': 'no-cache',
@@ -51,7 +50,7 @@ def sci(update, context):
     sci_url = 'https://sci-hub.se/' + str(ur)
     html = requests.Session()
     html.headers = headers
-    html1 = html.get('https://sci-hub.se/')
+    html1 = html.get('https://sci-hub.se/', timeout=5)
     html.cookies = html1.cookies
     html_t = html.post(sci_url, timeout=5)
     html_text = html_t.text
