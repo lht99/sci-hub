@@ -49,7 +49,7 @@ def sci(update, context):
 
    
     sci_url = 'https://sci-hub.se/' + str(ur)
-    sci-url1 = urllib.parse.quote(sci-url)
+    sci_url1 = urllib.parse.quote(sci_url)
     html = requests.Session()
     html.headers = headers
     html1 = html.get('https://sci-hub.se/', timeout=5)
