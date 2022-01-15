@@ -54,7 +54,7 @@ def sci(update, context):
     html.headers = headers
     html1 = html.get('https://sci-hub.se/', timeout=5)
     html.cookies = html1.cookies
-    html_t = html.post(sci_url1, timeout=5)
+    html_t = html.get(sci_url1, timeout=5)
     html_text = html_t.text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
