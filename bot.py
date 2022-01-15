@@ -40,8 +40,7 @@ def sci(update, context):
     chat_id = update.message.chat_id
     ur = update.message.text
     u = 'https://sci-hub.se/'
-    headers = { 'referer': u,
-               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62'
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'
     }
 
     sci_url = 'https://sci-hub.se/' + ur
