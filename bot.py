@@ -45,9 +45,10 @@ def sci(update, context):
 
     sci_url = 'https://sci-hub.se/' + ur
     html = requests.Session()
+    time.sleep(1)
     html.headers = headers
     html1 = html.get('https://sci-hub.se/', timeout=2)
-    time.sleep(2)
+    time.sleep(1)
     html.cookies = html1.cookies
     time.sleep(1)
     html_t = html.post(sci_url, timeout=2)
