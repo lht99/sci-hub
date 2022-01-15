@@ -12,7 +12,7 @@ from telegram.ext import (
 )
 import os
 import random
-import urllib.parse
+from urllib.parse import urlparse
 
 PORT = int(os.environ.get('PORT', '8443'))
 
@@ -47,13 +47,13 @@ def sci(update, context):
                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62'
     }
 
-    sci_url1 = urllib.parse.quote(ur)
-    sci_url = 'https://sci-hub.se/' + sci_url1
+    sci_url = 'https://sci-hub.se/' + ur
+    new_url = urlparse(sci_url)
     html = requests.Session()
     html.headers = headers
     html1 = html.get('https://sci-hub.se/', timeout=5)
     html.cookies = html1.cookies
-    html_t = html.post(sci_url, timeout=5)
+    html_t = html.post(new_url, timeout=5)
     html_text = html_t.text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
