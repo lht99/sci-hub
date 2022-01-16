@@ -54,11 +54,11 @@ def sci(update, context):
     html = requests.Session()
     time.sleep(1)
     html.headers = header
-    html1 = html.get('https://sci-hub.se/', timeout=2)
+    html1 = html.get('https://sci-hub.se/', timeout=60)
     time.sleep(1)
     html.cookies = html1.cookies
     time.sleep(1)
-    html_t = html.post(sci_url, timeout=2)
+    html_t = html.post(sci_url, timeout=60)
     html_text = html_t.text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
