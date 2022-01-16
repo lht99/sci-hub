@@ -42,11 +42,14 @@ def sci(update, context):
     u = 'https://sci-hub.se/'
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'
     }
-
+    headers1 = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)'
+    }
+    headers = [headers, headers1]
     sci_url = 'https://sci-hub.se/' + ur
+    header = random.choice(headers)
     html = requests.Session()
     time.sleep(1)
-    html.headers = headers
+    html.headers = header
     html1 = html.get('https://sci-hub.se/', timeout=2)
     time.sleep(1)
     html.cookies = html1.cookies
