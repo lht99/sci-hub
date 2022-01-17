@@ -40,25 +40,19 @@ def sci(update, context):
     chat_id = update.message.chat_id
     ur = update.message.text
     u = 'https://sci-hub.se/'
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'
-    }
-    headers1 = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)'
-    }
-    headers2 = {'cache-control': 'no-cache',
+    headers = {'cache-control': 'no-cache',
                'referer': u,
 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)'
     }
-    headersn = [headers, headers1, headers2]
     sci_url = 'https://sci-hub.se/' + ur
-    header = random.choice(headersn)
     html = requests.Session()
-    time.sleep(1)
-    html.headers = header
-    html1 = html.get('https://sci-hub.se/', timeout=60)
-    time.sleep(1)
+    time.sleep(2)
+    html.headers = headers
+    html1 = html.get('https://sci-hub.se/', timeout=3)
+    time.sleep(5)
     html.cookies = html1.cookies
-    time.sleep(1)
-    html_t = html.post(sci_url, timeout=60)
+    time.sleep(10)
+    html_t = html.post(sci_url, timeout=10)
     html_text = html_t.text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
