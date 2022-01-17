@@ -48,9 +48,9 @@ def sci(update, context):
                'referer': u,
 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)'
     }
-    headers = [headers, headers1, headers2]
+    headersn = [headers, headers1, headers2]
     sci_url = 'https://sci-hub.se/' + ur
-    header = random.choice(headers)
+    header = random.choice(headersn)
     html = requests.Session()
     time.sleep(1)
     html.headers = header
