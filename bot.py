@@ -40,14 +40,12 @@ def sci(update, context):
     chat_id = update.message.chat_id
     ur = update.message.text
     u = 'https://sci-hub.se/'
-    headers = {'cache-control': 'no-cache',
-               'referer': 'https://letuan.edu.vn',
-               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)'
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)'
     }
     sci_url = 'https://sci-hub.se/' + ur
     html = requests.Session()
     time.sleep(1)
-    html.headers.update = headers
+    html.headers = headers
     html1 = html.get('https://sci-hub.se/', timeout=3)
     time.sleep(1)
     html.cookies = html1.cookies
