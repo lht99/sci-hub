@@ -52,7 +52,7 @@ def sci(update, context):
     time.sleep(1)
     html.cookies = html1.cookies
     time.sleep(1)
-    html_t = html1.post(sci_url, timeout=10)
+    html_t = html.get(sci_url, timeout=10)
     html_text = html_t.text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
