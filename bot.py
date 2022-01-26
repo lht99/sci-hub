@@ -42,7 +42,7 @@ def sci(update, context):
     ur = update.message.text
     u = 'https://sci-hub.se/'
     ua = UserAgent(use_cache_server=False, cache=False)
-    headers = {'User-Agent': ua}
+    headers = {'User-Agent': ua.random}
     sci_url = 'https://sci-hub.se/' + ur
     html = requests.Session()
     time.sleep(1)
