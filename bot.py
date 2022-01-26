@@ -36,15 +36,13 @@ def start(update, context):
 
 def sci(update, context):
     ids = update.message.message_id
-    update.message.reply_text("Lỗi đây1-1")
     chat_id = update.message.chat_id
-    update.message.reply_text("Lỗi đây1-2")
     ur = update.message.text
-    update.message.reply_text("Lỗi đây1-3")
     u = 'https://sci-hub.se/'
+    update.message.reply_text("Lỗi đây1-3")
     ua = UserAgent(use_cache_server=False)
-    update.message.reply_text(ua)
     ub = ua.random
+    update.message.reply_text("Lỗi đây1-2")
     update.message.reply_text("Lỗi đây1-6")
     headers = {'User-Agent': ub}
     sci_url = 'https://sci-hub.se/' + ur
@@ -60,22 +58,16 @@ def sci(update, context):
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
     title = soup.findAll('i')
-    update.message.reply_text("Lỗi đây1")
     try:
-        update.message.reply_text("Lỗi đây2")
         if len(link) != 0:
-            update.message.reply_text("Lỗi đây3")
             link1 = link[0]["onclick"].split("'")[1]
-            update.message.reply_text("Lỗi đây4")
             if link1[:2] == "//":
-                update.message.reply_text("Lỗi đây5")
                 link6 = "https:" + link1
                 update.message.reply_text(link6)
             else:
                 link6 = link1
                 update.message.reply_text(link6)
             if len(title) != 0:
-                update.message.reply_text("Lỗi đây6")
                 title1 = title[0].text.split(".")[0]
                 title2 = title1 + ".pdf"
             else:
