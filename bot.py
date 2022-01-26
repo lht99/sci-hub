@@ -40,8 +40,8 @@ def sci(update, context):
     chat_id = update.message.chat_id
     ur = update.message.text
     u = 'https://sci-hub.se/'
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)'
-    }
+    ua = UserAgent(use_cache_server=False)
+    headers = {'User-Agent': ua.random}
     sci_url = 'https://sci-hub.se/' + ur
     html = requests.Session()
     time.sleep(1)
