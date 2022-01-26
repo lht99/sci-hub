@@ -46,10 +46,12 @@ def sci(update, context):
     headers = {'User-Agent': ub}
     sci_url = 'https://sci-hub.se/' + ur
     html = requests.Session()
+    time.sleep(1)
     html.headers = headers
-    html1 = html.get('https://sci-hub.se/', timeout=3)
+    html1 = html.get('https://sci-hub.se/', timeout=60)
     html.cookies = html1.cookies
-    html_t = html.get(sci_url, timeout=3)
+    time.sleep(1)
+    html_t = html.get(sci_url, timeout=60)
     html_text = html_t.text
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
