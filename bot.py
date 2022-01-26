@@ -12,8 +12,9 @@ from telegram.ext import (
 )
 import os
 import time
-import fake_useragent
 from fake_useragent import UserAgent
+ua = UserAgent(use_cache_server=False)
+
 PORT = int(os.environ.get('PORT', '8443'))
 
 # Enable logging
@@ -41,7 +42,6 @@ def sci(update, context):
     ur = update.message.text
     u = 'https://sci-hub.se/'
     update.message.reply_text("Lỗi đây1-3")
-    ua = UserAgent(use_cache_server=False)
     ub = ua.random
     update.message.reply_text("Lỗi đây1-2")
     update.message.reply_text("Lỗi đây1-6")
