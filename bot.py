@@ -12,6 +12,7 @@ from telegram.ext import (
 )
 import os
 import time
+import fake_useragent
 from fake_useragent import UserAgent
 PORT = int(os.environ.get('PORT', '8443'))
 
