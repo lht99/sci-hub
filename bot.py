@@ -56,6 +56,7 @@ def sci(update, context):
     title = soup.findAll('i')
     try:
         if len(link) != 0:
+            update.message.reply_text("OK")
             link1 = link[0]["onclick"].split("'")[1]
             if link1[:2] == "//":
                 link6 = "https:" + link1
