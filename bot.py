@@ -55,16 +55,22 @@ def sci(update, context):
     soup = bs(html_text, 'html.parser')
     link = soup.findAll("button")
     title = soup.findAll('i')
+    update.message.reply_text("Lỗi đây1")
     try:
+        update.message.reply_text("Lỗi đây2")
         if len(link) != 0:
+            update.message.reply_text("Lỗi đây3")
             link1 = link[0]["onclick"].split("'")[1]
+            update.message.reply_text("Lỗi đây4")
             if link1[:2] == "//":
+                update.message.reply_text("Lỗi đây5")
                 link6 = "https:" + link1
                 update.message.reply_text(link6)
             else:
                 link6 = link1
                 update.message.reply_text(link6)
             if len(title) != 0:
+                update.message.reply_text("Lỗi đây6")
                 title1 = title[0].text.split(".")[0]
                 title2 = title1 + ".pdf"
             else:
