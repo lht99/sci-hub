@@ -42,10 +42,7 @@ def sci(update, context):
     chat_id = update.message.chat_id
     ur = update.message.text
     u = 'https://sci-hub.se/'
-    update.message.reply_text("Lỗi đây1-3")
     ub = ua.random
-    update.message.reply_text("Lỗi đây1-2")
-    update.message.reply_text("Lỗi đây1-6")
     headers = {'User-Agent': ub}
     sci_url = 'https://sci-hub.se/' + ur
     html = requests.Session()
