@@ -37,13 +37,11 @@ def start(update, context):
 
 
 def sci(update, context):
-    ids = update.message.message_id
-    chat_id = update.message.chat_id
-    ur = update.message.text
+    url = 'https://aip.scitation.org/doi/10.1063/5.0012622'
     u = 'https://sci-hub.se/'
     ua = UserAgent(use_cache_server=False)
     headers = {'User-Agent': ua.random}
-    sci_url = 'https://sci-hub.se/' + ur
+    sci_url = 'https://sci-hub.se/' + url
     html = requests.Session()
     time.sleep(1)
     html.headers = headers
