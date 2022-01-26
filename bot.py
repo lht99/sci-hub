@@ -41,9 +41,11 @@ def sci(update, context):
     chat_id = update.message.chat_id
     update.message.reply_text("Lỗi đây1-2")
     ur = update.message.text
+    update.message.reply_text("Lỗi đây1-3")
     u = 'https://sci-hub.se/'
     ua = UserAgent(use_cache_server=False)
     ub = ua.random
+    update.message.reply_text("Lỗi đây1-4")
     headers = {'User-Agent': ub}
     sci_url = 'https://sci-hub.se/' + ur
     html = requests.Session()
