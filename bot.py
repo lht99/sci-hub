@@ -13,7 +13,6 @@ from telegram.ext import (
 import os
 import random
 import time
-from fake_useragent import UserAgent
 
 PORT = int(os.environ.get('PORT', '8443'))
 
@@ -37,11 +36,13 @@ def start(update, context):
 
 
 def sci(update, context):
-    url = 'https://aip.scitation.org/doi/10.1063/5.0012622'
+    ids = update.message.message_id
+    chat_id = update.message.chat_id
+    ur = update.message.text
     u = 'https://sci-hub.se/'
-    ua = UserAgent(use_cache_server=False)
-    headers = {'User-Agent': ua.random}
-    sci_url = 'https://sci-hub.se/' + url
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)'
+    }
+    sci_url = 'https://sci-hub.se/' + ur
     html = requests.Session()
     time.sleep(1)
     html.headers = headers
@@ -56,7 +57,6 @@ def sci(update, context):
     title = soup.findAll('i')
     try:
         if len(link) != 0:
-            update.message.reply_text("OK")
             link1 = link[0]["onclick"].split("'")[1]
             if link1[:2] == "//":
                 link6 = "https:" + link1
