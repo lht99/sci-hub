@@ -13,7 +13,7 @@ from telegram.ext import (
 import os
 import random
 import time
-
+from fake_useragent import UserAgent
 PORT = int(os.environ.get('PORT', '8443'))
 
 # Enable logging
