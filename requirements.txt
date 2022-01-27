@@ -1,4 +1,4 @@
 python-telegram-bot==13.8.1
 requests==2.26.0
 beautifulsoup4==4.7.1
-fake_useragent==0.1.11
+fake_useragent==0.1.12
