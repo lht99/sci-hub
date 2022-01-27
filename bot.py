@@ -12,9 +12,9 @@ from telegram.ext import (
 )
 import os
 import time
-from fake_useragent import UserAgent
-ua = UserAgent()
-ua.update()
+from user_agent2 import (
+    generate_user_agent,
+)
 
 PORT = int(os.environ.get('PORT', '8443'))
 
@@ -42,7 +42,7 @@ def sci(update, context):
     chat_id = update.message.chat_id
     ur = update.message.text
     u = 'https://sci-hub.se/'
-    ub = ua.random
+    ub = generate_user_agent()
     headers = {'User-Agent': ub}
     sci_url = 'https://sci-hub.se/' + ur
     html = requests.Session()
