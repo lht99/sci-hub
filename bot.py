@@ -13,7 +13,7 @@ from telegram.ext import (
 import os
 import time
 from fake_useragent import UserAgent
-ua = UserAgent()
+ua = UserAgent(verify_ssl=False)
 ua.update()
 
 PORT = int(os.environ.get('PORT', '8443'))
