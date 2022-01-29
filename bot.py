@@ -60,9 +60,8 @@ def sci(update, context):
     s1 = br1[s0]
     vl = br[s1][s]
     result_str = ''.join((random.choice('abcdefghiklmnopqrstyzw0123456789') for i in range(20)))
-    headers =  {
-    'referer':result_str,
-    'user-agent': vl}
+    headers =  {'user-agent': vl,
+    'referer':result_str}
     sci_url = 'https://sci-hub.se/' + ur
     html = requests.Session()
     time.sleep(1)
