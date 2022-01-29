@@ -21,6 +21,7 @@ data = {"browsers": {"chrome": ["Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36
 
 br = data["browsers"]
 
+
 PORT = int(os.environ.get('PORT', '8443'))
 
 # Enable logging
@@ -58,7 +59,10 @@ def sci(update, context):
     s0 = random.randint(0,4)
     s1 = br1[s0]
     vl = br[s1][s]
-    headers =  {'user-agent': vl}
+    result_str = ''.join((random.choice('abcdefghiklmnopqrstyzw0123456789') for i in range(20)))
+    headers =  {
+    'referer':result_str,
+    'user-agent': vl}
     sci_url = 'https://sci-hub.se/' + ur
     html = requests.Session()
     time.sleep(1)
