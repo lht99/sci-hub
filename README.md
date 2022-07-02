@@ -17,4 +17,4 @@ For this, by using simple code to collect first 10 proxy for further.
 
 --> Return pdf file or if file too large -> give download link.
 
---> Log will be send to Telegram group for investigation
+--> Log will be sent to Telegram group for investigation
