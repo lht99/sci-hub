@@ -6,7 +6,7 @@ The idea come from private bot for saving science paper to Telegram account for 
 
 Thank you to  this project: https://github.com/iw4p/proxy-scraper/blob/master/proxyScraper.py for spys.me proxy scraper
 
-# How to prevent 403 response
+# How to prevent 403 response python
 
 This 403 error come from the anti-ddos system from sci-hub. 
 For this, by using simple code to collect first 10 proxy for further.
