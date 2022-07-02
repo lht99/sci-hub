@@ -87,7 +87,8 @@ def sci(update, context):
                     text = 'Lỗi: ' + str(req2.status_code)
                     update.message.reply_text(
                         "Look like link is not found Or Wrong Link")
-                    context.bot.send_message('-624406509', text)
+                    context.bot.send_message('-00000000000', text)
+                    #Change group id if you want to send message
 
             except IndexError:
                 update.message.reply_text("__ERROR__")
